@@ -1,0 +1,23 @@
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th scope="col">From Adı</th>
+      <th scope="col">Açıklama</th>
+      <th scope="col">Oluşturulma Tarihi</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let formInfo of formInfos | filterForms:filterArgs">
+      <td>{{formInfo.name}}</td>
+      <td>{{formInfo.description}}</td>
+      <td>{{ formInfo.createdAt | date:  'M/d/yy'  }}</td>
+      <td>
+        <button routerLink="/forms/{{formInfo.name}}" class="btn btn-info btn-sm"> Formu Doldur</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <span class="alert alert-info mt-5" *ngIf="filterArgs">{{filterArgs}} Araması için bulunan sonuçlar</span>
+</div>

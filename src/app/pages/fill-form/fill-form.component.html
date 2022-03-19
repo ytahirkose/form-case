@@ -1,0 +1,26 @@
+<div class="container">
+  <form  [formGroup]="fillForm" (ngSubmit)="addFillForm()">
+    <div *ngIf="form" class="text-center">
+      <h2 class="h2 fw-normal">{{form.name}}</h2>
+      <h3 class="h3 fw-normal">Açıklama: {{form.description}}</h3>
+      <h4 class="h4 mb-3 fw-normal">{{form.createdAt}}</h4>
+
+
+      <div *ngFor="let field of form.fields;let in=index;" class="form-floating mt-2">
+        <input type="{{field.dataType == 'STRING' ? 'text': 'number'}}" formControlName="{{field.name}}"
+               class="form-control" id="{{field.name}}" placeholder="{{field.name}}" name="{{field.name}}">
+        <label for="{{field.name}}">{{field.name}} giriniz</label>
+        <label *ngIf="fillForm.get(field.name)?.hasError('required')&&fillForm.get(field.name)?.dirty"
+        class="alert alert-danger">
+          {{field.name}} bilgisi girmek zorunludur!
+        </label>
+      </div>
+
+
+      <div class="checkbox mb-3">
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Kaydet</button>
+    </div>
+  </form>
+</div>
+

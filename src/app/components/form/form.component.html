@@ -1,0 +1,47 @@
+<h3 class="nav-item" class="text-secondary" routerLink="/forms">Add New Form</h3>
+
+<div class="container form-control">
+  <form class="e-form" [formGroup]="newFormAddForm" (ngSubmit)="addForm()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Form Adı</label>
+      <input type="text" class="form-control" id="name" formControlName="name" aria-describedby="name">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Açıklama</label>
+      <input type="text" class="form-control" id="description" formControlName="description"
+             aria-describedby="description">
+    </div>
+
+    <form class="form-control bg-secondary mb-5" [formGroup]="newFormContentAddForm" (ngSubmit)="addContent()">
+      <div>
+        <span *ngIf="newFormContent.length">
+          Eklenen Özellikler
+        </span>
+        <span class="badge badge-success" *ngFor="let field of newFormContent">
+          {{field.name}}
+        </span>
+      </div>
+      <div class="mb-3">
+        <label for="contentName" class="form-label">Yeni Form Özelliği Adı</label>
+        <input type="text" class="form-control" id="contentName" formControlName="name" aria-describedby="contentName">
+      </div>
+      <div class="mb-3">
+        <label for="required" class="form-label">Yeni Form Özelliği Zorunluluk</label>
+        <select id="required" class="form-select" aria-label="Yeni Form Özelliği Zorunluluk" formControlName="required">
+          <option value="true">Zorunlu Alan</option>
+          <option value="false">Zorunlu Olmayan Alan</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="dataType" class="form-label">Yeni Form Özelliği Türü</label>
+        <select id="dataType" class="form-select" aria-label="Yeni Form Özelliği Türü" formControlName="dataType">
+          <option value="STRING">Metin</option>
+          <option value="NUMBER">Sayı</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Yeni Form Özelliği Ekle</button>
+    </form>
+    <button type="submit" class="btn btn-primary">Yeni Form Ekle</button>
+  </form>
+</div>
+
